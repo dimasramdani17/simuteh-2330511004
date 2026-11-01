@@ -1,10 +1,11 @@
 
 """praproses.py: rangkaian praproses SIMUTEH."""
 
-import json
 import os
+import json
 import cv2
 import numpy as np
+
 
 PARAM_BAWAAN = {
     "lebar": 640,
@@ -19,82 +20,113 @@ PARAM_BAWAAN = {
 
 
 def praproses(img_bgr, p=None):
-    """Urutan: resize -> gamma -> CLAHE V -> filter -> sharpening."""
+    """
+    Urutan:
+    ubah ukuran -> gamma -> CLAHE kanal V
+    -> redam derau -> penajaman.
+    """
 
     p = {**PARAM_BAWAAN, **(p or {})}
 
-    # TODO 1: Ubah ukuran dengan rasio aspek tetap
+    if img_bgr is None:
+        raise ValueError("Citra tidak boleh kosong.")
+
+    # TODO 1: Ubah ukuran citra
     tinggi, lebar = img_bgr.shape[:2]
-    skala = p["lebar"] / lebar
-    tinggi_baru = int(tinggi * skala)
+
+    lebar_baru = int(p["lebar"])
+    tinggi_baru = int(tinggi * lebar_baru / lebar)
 
     img = cv2.resize(
         img_bgr,
-        (p["lebar"], tinggi_baru),
+        (lebar_baru, tinggi_baru),
         interpolation=cv2.INTER_AREA
     )
 
     # TODO 2: Koreksi gamma
-    if p["gamma"] != 1.0:
-        gamma = p["gamma"]
+    gamma = float(p["gamma"])
+
+    if gamma != 1.0:
         tabel = np.array([
-            ((i / 255.0) ** (1.0 / gamma)) * 255
+            ((i / 255.0) ** gamma) * 255
             for i in range(256)
-        ]).astype("uint8")
+        ]).clip(0, 255).astype(np.uint8)
 
         img = cv2.LUT(img, tabel)
 
     # TODO 3: CLAHE pada kanal V
-    if p["clahe_clip"] > 0:
+    if float(p["clahe_clip"]) > 0:
         hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-        h, s, v = cv2.split(hsv)
 
         clahe = cv2.createCLAHE(
-            clipLimit=p["clahe_clip"],
-            tileGridSize=(p["clahe_tile"], p["clahe_tile"])
+            clipLimit=float(p["clahe_clip"]),
+            tileGridSize=(
+                int(p["clahe_tile"]),
+                int(p["clahe_tile"])
+            )
         )
 
-        v = clahe.apply(v)
+        hsv[:, :, 2] = clahe.apply(hsv[:, :, 2])
+
         img = cv2.cvtColor(
-            cv2.merge([h, s, v]),
+            hsv,
             cv2.COLOR_HSV2BGR
         )
 
     # TODO 4: Redam derau
-    jenis = p["penapis"]
-    k = p["kernel"]
+    penapis = str(p["penapis"]).lower()
+    kernel = int(p["kernel"])
 
-    if jenis == "rerata":
-        img = cv2.blur(img, (k, k))
+    if kernel < 1 or kernel % 2 == 0:
+        raise ValueError("Kernel harus bilangan ganjil positif.")
 
-    elif jenis == "gaussian":
+    if penapis == "none":
+        pass
+
+    elif penapis == "rerata":
+        img = cv2.blur(img, (kernel, kernel))
+
+    elif penapis == "gaussian":
         img = cv2.GaussianBlur(
-            img, (k, k), p["sigma"]
+            img,
+            (kernel, kernel),
+            float(p["sigma"])
         )
 
-    elif jenis == "median":
-        img = cv2.medianBlur(img, k)
+    elif penapis == "median":
+        img = cv2.medianBlur(img, kernel)
 
-    elif jenis != "none":
-        raise ValueError("Jenis penapis tidak dikenal")
+    else:
+        raise ValueError("Jenis penapis tidak dikenal.")
 
     # TODO 5: Unsharp masking
-    if p["tajam_k"] > 0:
+    tajam_k = float(p["tajam_k"])
+
+    if tajam_k > 0:
         blur = cv2.GaussianBlur(img, (0, 0), 1.0)
+
         img = cv2.addWeighted(
-            img, 1.0 + p["tajam_k"],
-            blur, -p["tajam_k"], 0
+            img,
+            1.0 + tajam_k,
+            blur,
+            -tajam_k,
+            0
         )
 
     return img
 
 
 def simpan_param(p, path="../hasil/param_praproses.json"):
-    os.makedirs(os.path.dirname(path), exist_ok=True)
+    """Menyimpan parameter praproses ke JSON."""
 
-    with open(path, "w") as f:
-        json.dump(
-            {**PARAM_BAWAAN, **p},
-            f,
-            indent=2
-        )
+    parameter = {**PARAM_BAWAAN, **p}
+
+    folder = os.path.dirname(path)
+
+    if folder:
+        os.makedirs(folder, exist_ok=True)
+
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(parameter, f, indent=4)
+
+    return parameter

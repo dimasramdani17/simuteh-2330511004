@@ -1,0 +1,6 @@
+Langkah,Parameter final,Alasan dan bukti,Risiko bila salah atur
+1. Ubah ukuran,Lebar 640 piksel,Menyesuaikan ukuran citra kerja dan menjaga rasio aspek.,Detail citra dapat hilang atau ukuran citra tidak seragam.
+2. Koreksi gamma,1.0,Ditentukan berdasarkan hasil evaluasi pencahayaan pada B3.,Citra dapat terlalu terang atau terlalu gelap.
+3. CLAHE kanal V,"Clip 2.0, tile 8",Ditentukan berdasarkan perbandingan peningkatan kontras pada B3.,Kontras berlebihan dapat memperkuat derau.
+4. Redam derau,"median, kernel 3","Ditentukan berdasarkan PSNR, waktu, dan KB pada B4.",Bercak kecil dapat menjadi kabur atau hilang.
+5. Tajamkan,0.0,Ditentukan berdasarkan pengamatan ketajaman dan perubahan derau.,Penajaman berlebihan dapat menghasilkan artefak.
