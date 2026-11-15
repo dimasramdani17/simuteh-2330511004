@@ -1,0 +1,10 @@
+Metode,Parameter,KB,Simpangan baku,Pengamatan visual
+asli,-,1.86,55.3,"Sisi kanan teduh, bercak di sisi teduh samar"
+negatif,s = 255 - r,1.86,55.3,Hanya membalik intensitas; KB tetap
+cerah+50,b = 50,1.86,53.7,Semua intensitas naik; area terang dapat terpotong di 255
+kontras,"a = 1,5; b = -40",1.86,78.1,Kontras global naik; sebagian area terang dapat jenuh
+regang,persentil 2-98,1.91,81.7,Rentang intensitas diperluas menggunakan persentil 2-98
+gamma0.5,"gamma = 0,5",1.62,39.7,"Sisi teduh lebih cerah, tetapi daun ikut menjadi lebih terang"
+gamma1.8,"gamma = 1,8",2.29,59.7,Citra menjadi lebih gelap sehingga bagian terang lebih menonjol
+ekualisasi,global,1.4,73.5,Distribusi intensitas diratakan secara global
+CLAHE,clip 2; tile 8,2.45,47.2,Kontras lokal ditingkatkan pada bagian-bagian citra

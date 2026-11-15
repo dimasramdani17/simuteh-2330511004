@@ -1,0 +1,12 @@
+{
+  "lebar": 640,
+  "gamma": "auto",
+  "clahe_clip": 1.0,
+  "clahe_tile": 4,
+  "clahe_otomatis": true,
+  "batas_tidak_rata": 0.65,
+  "penapis": "median",
+  "kernel": 3,
+  "sigma": 1.0,
+  "tajam_k": 0.0
+}

@@ -1,0 +1,11 @@
+Citra,Kondisi,Rerata,Simp. baku,Min-maks,% gelap,% terang,Diagnosis,Usulan perbaikan
+teh_041.png,normal,172.2,46.7,67-228,0.0,16.5,baik,tidak perlu perbaikan berat
+teh_042.png,gelap,129.0,44.4,14-182,6.8,0.0,baik,tidak perlu perbaikan berat
+teh_043.png,terang,209.7,25.1,128-254,0.0,76.4,terlalu terang,"gamma > 1 (mis. 1,6)"
+teh_044.png,kontras_rendah,153.4,13.8,96-198,0.0,0.0,kontras rendah,peregangan kontras / CLAHE
+teh_045.png,bayangan,128.4,55.3,29-239,2.1,10.8,cahaya tidak merata,"CLAHE (clip 1, tile 4)"
+teh_021.png,normal,182.4,44.5,63-244,0.0,38.8,baik,tidak perlu perbaikan berat
+teh_022.png,gelap,118.7,35.5,14-176,8.9,0.0,baik,tidak perlu perbaikan berat
+teh_023.png,terang,212.9,25.6,147-249,0.0,77.2,terlalu terang,"gamma > 1 (mis. 1,6)"
+teh_024.png,kontras_rendah,155.1,15.2,92-203,0.0,0.0,kontras rendah,peregangan kontras / CLAHE
+teh_025.png,bayangan,126.4,59.2,20-252,2.6,16.2,cahaya tidak merata,"CLAHE (clip 1, tile 4)"

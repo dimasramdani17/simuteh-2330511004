@@ -1,0 +1,7 @@
+Aspek,Risiko pada SIMUTEH,Mitigasi awal
+Privasi citra,Foto daun teh dapat memuat wajah petugas atau informasi lokasi kebun.,Menghindari pengambilan wajah dan menghapus metadata lokasi sebelum penyimpanan.
+Bias dan keadilan,Perbedaan pencahayaan dan kualitas kamera dapat menyebabkan hasil klasifikasi tidak merata.,Menggunakan variasi lima kondisi cahaya dan mengevaluasi hasil berdasarkan kondisi tersebut.
+Transparansi,Petugas tidak mengetahui alasan daun dikategorikan sebagai bercak berat.,Menampilkan area bercak dan persentase bercak sebagai pendukung hasil klasifikasi.
+Keamanan data,Dataset dan hasil pengolahan dapat diakses oleh pihak yang tidak berwenang.,Membatasi akses penyimpanan dan menjaga keamanan repository.
+Dampak sosial,Kesalahan klasifikasi dapat menyebabkan daun sehat dianggap rusak atau sebaliknya.,Menjadikan SIMUTEH sebagai alat bantu dan keputusan akhir tetap pada petugas.
+Keterlacakan,Hasil pengolahan sulit diulang jika parameter dan versi pustaka tidak dicatat.,"Mencatat SEED, versi pustaka, dan parameter prapemrosesan."

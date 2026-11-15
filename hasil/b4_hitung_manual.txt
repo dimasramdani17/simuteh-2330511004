@@ -1,0 +1,27 @@
+BAGIAN 4.1 - LEMBAR HITUNG
+
+Matriks P:
+[[ 52.  55.  61.  58.]
+ [ 59. 255.  64.  60.]
+ [ 62.  60.   0.  57.]
+ [ 58.  61.  59.  63.]]
+
+a) Rerata:
+[[74.22 74.44]
+ [75.33 75.44]]
+
+Gaussian:
+[[104.44  77.38]
+ [ 77.25  57.44]]
+
+Median:
+[[60. 60.]
+ [60. 60.]]
+
+b) Kernel penajaman:
+300 -> setelah clipping: 255
+
+c) Padding:
+zero: [0, 12, 30, 45, 70, 0] -> rerata = 14.00
+replicate: [12, 12, 30, 45, 70, 70] -> rerata = 18.00
+reflect101: [30, 12, 30, 45, 70, 45] -> rerata = 24.00

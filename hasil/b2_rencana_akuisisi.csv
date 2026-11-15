@@ -1,0 +1,8 @@
+Aspek,Ketentuan
+Jarak dan sudut,"Tegak lurus dari atas, jarak sekitar 20 cm (satu jengkal); maksimal 23 cm agar bercak 5 mm tetap >= 10 piksel setelah diperkecil ke lebar 640 px"
+Resolusi minimum,"Foto asli minimal 12 MP (4000 x 3000); bila jarak lebih jauh, lebar kerja dinaikkan (misalnya 1280 px)"
+Alas dan acuan ukuran,Nampan atau kertas HVS polos berwarna terang; koin Rp500 atau penggaris di sudut bingkai untuk konversi piksel ke mm (P6)
+Kondisi cahaya,"Mewakili 5 kondisi: normal, teduh/gelap, terik, berkabut/kontras rendah, bayangan sebagian; catat kondisi setiap foto"
+Jumlah citra,"Minimal 100 citra per kelas (Sehat, Ringan, Berat), seimbang antarkelas dan antarkondisi, dari minimal 3 kebun"
+Penamaan berkas,"<kebun>_<kondisi>_<kelas>_<nomor>.jpg, misalnya k01_teduh_ringan_007.jpg; dicatat di catatan_akuisisi.csv"
+Izin dan privasi,Izin tertulis ketua kelompok tani; EXIF dihapus otomatis; tidak ada wajah/tangan beridentitas; foto mentah tidak diunggah ke repository publik
